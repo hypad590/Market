@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Order Details</title>
+</head>
+<body>
+<h1>Order Details</h1>
+<div th:if="${order != null}">
+    <p>Order ID: <span th:text="${order.id}">Order ID</span></p>
+    <p>Name: <span th:text="${order.name}">Name</span></p>
+    <p>Product Name: <span th:text="${order.productName}">Product Name</span></p>
+    <p>Total Price: <span th:text="${order.totalPrice}">Total Price</span></p>
+</div>
+<div th:if="${order == null}">
+    <p>Order not found.</p>
+</div>
+</body>
+</html>
