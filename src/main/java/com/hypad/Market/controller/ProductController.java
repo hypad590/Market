@@ -1,7 +1,10 @@
 package com.hypad.Market.controller;
 
+import com.hypad.Market.Service.OrderService;
 import com.hypad.Market.Service.ProductService;
+import com.hypad.Market.model.Order;
 import com.hypad.Market.model.Product;
+import com.hypad.Market.repository.OrderControllerInt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,13 +17,15 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/products")
-public class ProductController {
+public class ProductController implements OrderControllerInt {
 
     public final ProductService productService;
+    public final OrderService orderService;
 
     @Autowired
-    public ProductController(ProductService productService) {
+    public ProductController(ProductService productService, OrderService orderService) {
         this.productService = productService;
+        this.orderService = orderService;
     }
 
     @GetMapping
@@ -41,8 +46,22 @@ public class ProductController {
                 .price(price)
                 .build();
 
-        productService.addProduct(product); //todo addToCart method that stores products in userData
+        addProductToOrder(product);
         return "redirect:/products";
     }
 
+    @Override
+    public void addProductToOrder(Product product) {
+        Order order = Order
+                .builder()
+                .productName(product.getProductName())
+                .totalPrice(product.getPrice())
+                .name("null")
+                .build(); //no card data rn
+
+        orderService.createOrder(order);
+    }
+
+    //todo make the field totalPrice in Order as price and in orderTable same thing,
+    // add card data fields in orderTable
 }

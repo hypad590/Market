@@ -1,6 +1,7 @@
 package com.hypad.Market.repositoryImpl;
 
 import com.hypad.Market.model.Order;
+import com.hypad.Market.model.Product;
 import com.hypad.Market.repository.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
