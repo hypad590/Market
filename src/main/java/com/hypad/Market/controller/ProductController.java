@@ -31,11 +31,17 @@ public class ProductController {
         return "products";
     }
 
-    //todo the values must be requested instead of product
-    // and then new Product().setPrice ...
+
     @PostMapping("/addToCart")
-    public String addToCart(@RequestParam("product") Product product){
-        productService.addProduct(product);
+    public String addToCart(@RequestParam("productName") String name,
+                            @RequestParam("price") String price){
+
+        Product product = Product.builder()
+                .productName(name)
+                .price(price)
+                .build();
+
+        productService.addProduct(product); //todo addToCart method that stores products in userData
         return "redirect:/products";
     }
 

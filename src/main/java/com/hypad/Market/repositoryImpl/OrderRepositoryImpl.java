@@ -38,7 +38,7 @@ public class OrderRepositoryImpl implements OrderRepository {
         String sql = "SELECT * FROM ordertable WHERE id = :orderId";
         SqlParameterSource params = new MapSqlParameterSource()
                 .addValue("orderId", orderId);
-        return jdbcTemplate.queryForObject(sql, params, Order.class);
+        return jdbcTemplate.queryForObject(sql, params, new BeanPropertyRowMapper<>(Order.class));
     }
 
     @Override

@@ -26,10 +26,12 @@ public class OrderController {
                        @ModelAttribute("email") String email,
                        @ModelAttribute("password") String password,
                        Model model) {
-        User user = new User();
-        user.setName(name);
-        user.setEmail(email);
-        user.setPassword(password);
+        User user = User
+                .builder()
+                .name(name)
+                .email(email)
+                .password(password)
+                .build();
 
         model.addAttribute("user", user);
 

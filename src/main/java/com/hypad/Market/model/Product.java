@@ -1,8 +1,10 @@
 package com.hypad.Market.model;
-
-import lombok.Data;
+import lombok.*;
 
 @Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class Product {
 
     private int id;
