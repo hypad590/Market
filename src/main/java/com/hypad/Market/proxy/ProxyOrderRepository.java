@@ -29,7 +29,8 @@ public class ProxyOrderRepository implements OrderRepository {
         if (orderRepositoryImpl == null) {
             orderRepositoryImpl = new OrderRepositoryImpl(namedParameterJdbcTemplate);
         }
-        System.out.println("Proxy: Fetching order with ID: soon ");
+        System.out.println("Proxy: Fetching order with ID: soon "); //todo (just make every String id as int)
+        //todo and debug the creating order
         return orderRepositoryImpl.getOrder(orderId);
     }
 
