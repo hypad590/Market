@@ -25,13 +25,13 @@ public class OrderController {
     public String cart(@ModelAttribute("name") String name,
                        @ModelAttribute("email") String email,
                        @ModelAttribute("password") String password,
-                       Model model){
+                       Model model) {
         User user = new User();
         user.setName(name);
         user.setEmail(email);
         user.setPassword(password);
 
-        model.addAttribute("user",user);
+        model.addAttribute("user", user);
 
         return "cart";
     }
@@ -51,15 +51,14 @@ public class OrderController {
         order.setCcNumber(ccNumber);
         order.setCcExpiration(ccExpiration);
         order.setCcVV(ccVV);
-
         orderService.createOrder(order);
 
         return "redirect:/order/list";
     }
 
     @PostMapping("/orderById/{id}")
-    public String orderById(@PathVariable int id, Model model){
-        Order order = orderService.getOrder(String.valueOf(id));
+    public String orderById(@PathVariable String id, Model model){
+        Order order = orderService.getOrder(id);
         model.addAttribute("order",order);
         return "orderById";
     }
