@@ -1,5 +1,8 @@
 package com.hypad.Market.model;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -13,7 +16,11 @@ import java.util.List;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@Entity
+@Table(name = "_user")
 public class User {
+
+    @Id
     private int id;
 
     @NotBlank(message = "Name should not be empty")
@@ -25,6 +32,4 @@ public class User {
 
     @NotBlank
     private String password;
-
-    private List<Order> orders;
 }

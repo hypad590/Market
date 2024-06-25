@@ -1,4 +1,6 @@
-insert into products (id, productname, price) VALUES (1,'COKE','0.99$');
-insert into products (id, productname, price) VALUES (2,'BURGER','1.49$');
-insert into products (id, productname, price) VALUES (3,'SUSHI','2.49$');
-insert into products (id, productname, price) VALUES (4,'PIZZA', '4.48$')
+create table users (
+    id          BIGSERIAL         PRIMARY KEY ,
+    name        TEXT              NOT NULL,
+    email       TEXT              NOT NULL ,
+    password    TEXT              NOT NULL
+)

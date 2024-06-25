@@ -64,4 +64,5 @@ public class ProductController implements OrderControllerInt {
 
     //todo make the field totalPrice in Order as price and in orderTable same thing,
     // add card data fields in orderTable
+    //todo also add the service for workers to manage orders
 }
