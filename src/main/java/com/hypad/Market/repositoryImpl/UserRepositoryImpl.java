@@ -2,6 +2,7 @@ package com.hypad.Market.repositoryImpl;
 
 import com.hypad.Market.model.User;
 import com.hypad.Market.repository.UserRepository;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
@@ -12,9 +13,11 @@ import java.util.List;
 
 @Repository
 public class UserRepositoryImpl implements UserRepository {
+
+    @Qualifier("postgresJdbcTemplate")
     private final NamedParameterJdbcTemplate jdbcTemplate;
 
-    public UserRepositoryImpl(NamedParameterJdbcTemplate jdbcTemplate) {
+    public UserRepositoryImpl(@Qualifier("postgresJdbcTemplate") NamedParameterJdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
 

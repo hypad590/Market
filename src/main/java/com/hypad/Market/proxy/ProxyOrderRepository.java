@@ -3,15 +3,17 @@ package com.hypad.Market.proxy;
 import com.hypad.Market.model.Order;
 import com.hypad.Market.repository.OrderRepository;
 import com.hypad.Market.repositoryImpl.OrderRepositoryImpl;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 
 import java.util.List;
 
 public class ProxyOrderRepository implements OrderRepository {
     private OrderRepositoryImpl orderRepositoryImpl;
+    @Qualifier("postgresJdbcTemplate")
     private final NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
-    public ProxyOrderRepository(OrderRepositoryImpl orderRepositoryImpl, NamedParameterJdbcTemplate namedParameterJdbcTemplate) {
+    public ProxyOrderRepository(OrderRepositoryImpl orderRepositoryImpl,@Qualifier("postgresJdbcTemplate") NamedParameterJdbcTemplate namedParameterJdbcTemplate) {
         this.orderRepositoryImpl = orderRepositoryImpl;
         this.namedParameterJdbcTemplate = namedParameterJdbcTemplate;
     }

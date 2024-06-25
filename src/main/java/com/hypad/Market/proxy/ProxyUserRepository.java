@@ -3,6 +3,7 @@ package com.hypad.Market.proxy;
 import com.hypad.Market.model.User;
 import com.hypad.Market.repository.UserRepository;
 import com.hypad.Market.repositoryImpl.UserRepositoryImpl;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 
 import java.util.List;
@@ -10,9 +11,11 @@ import java.util.List;
 public class ProxyUserRepository implements UserRepository {
 
     private UserRepositoryImpl userRepositoryImpl;
+
+    @Qualifier("postgresJdbcTemplate")
     private final NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
-    public ProxyUserRepository(UserRepositoryImpl userRepositoryImpl, NamedParameterJdbcTemplate namedParameterJdbcTemplate) {
+    public ProxyUserRepository(UserRepositoryImpl userRepositoryImpl,@Qualifier("postgresJdbcTemplate") NamedParameterJdbcTemplate namedParameterJdbcTemplate) {
         this.userRepositoryImpl = userRepositoryImpl;
         this.namedParameterJdbcTemplate = namedParameterJdbcTemplate;
     }

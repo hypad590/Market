@@ -3,6 +3,7 @@ package com.hypad.Market.repositoryImpl;
 import com.hypad.Market.model.Product;
 import com.hypad.Market.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
@@ -14,10 +15,11 @@ import java.util.List;
 @Repository
 public class ProductRepositoryImpl implements ProductRepository {
 
+    @Qualifier("postgresJdbcTemplate")
     public final NamedParameterJdbcTemplate jdbcTemplate;
 
     @Autowired
-    public ProductRepositoryImpl(NamedParameterJdbcTemplate jdbcTemplate) {
+    public ProductRepositoryImpl(@Qualifier("postgresJdbcTemplate") NamedParameterJdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
 
