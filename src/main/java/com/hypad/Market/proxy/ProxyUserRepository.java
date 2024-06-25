@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 
 import java.util.List;
+import java.util.Optional;
 
 public class ProxyUserRepository implements UserRepository {
 
@@ -21,7 +22,7 @@ public class ProxyUserRepository implements UserRepository {
     }
 
     @Override
-    public User getUserByEmail(String email) {
+    public Optional<User> getUserByEmail(String email) {
         if(userRepositoryImpl == null){
             userRepositoryImpl = new UserRepositoryImpl(namedParameterJdbcTemplate);
         }
@@ -30,7 +31,7 @@ public class ProxyUserRepository implements UserRepository {
     }
 
     @Override
-    public User getUserByName(String name) {
+    public Optional<User> getUserByName(String name) {
         if(userRepositoryImpl == null){
             userRepositoryImpl = new UserRepositoryImpl(namedParameterJdbcTemplate);
         }

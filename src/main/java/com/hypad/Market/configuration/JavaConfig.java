@@ -99,8 +99,10 @@ public class JavaConfig {
         return new UserRepositoryImpl(namedParameterJdbcTemplate);
     }
 
+    @Primary
     @Bean
     public UserRepository userRepository(@Qualifier("postgresJdbcTemplate") NamedParameterJdbcTemplate namedParameterJdbcTemplate, UserRepositoryImpl userRepositoryImpl){
         return new ProxyUserRepository(userRepositoryImpl,namedParameterJdbcTemplate);
     }
+
 }

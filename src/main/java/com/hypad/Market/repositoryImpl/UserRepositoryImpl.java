@@ -10,6 +10,7 @@ import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public class UserRepositoryImpl implements UserRepository {
@@ -22,19 +23,19 @@ public class UserRepositoryImpl implements UserRepository {
     }
 
     @Override
-    public User getUserByEmail(String email) {
+    public Optional<User> getUserByEmail(String email) {
         String sql = "SELECT * FROM _user WHERE email = :email";
         SqlParameterSource namedParameters = new MapSqlParameterSource()
                 .addValue("email", email);
-        return jdbcTemplate.queryForObject(sql, namedParameters, new BeanPropertyRowMapper<>(User.class));
+        return Optional.ofNullable(jdbcTemplate.queryForObject(sql, namedParameters, new BeanPropertyRowMapper<>(User.class)));
     }
 
     @Override
-    public User getUserByName(String name) {
+    public Optional<User> getUserByName(String name) {
         String sql = "SELECT * FROM _user WHERE name = :name";
         SqlParameterSource namedParameters = new MapSqlParameterSource()
                 .addValue("name", name);
-        return jdbcTemplate.queryForObject(sql, namedParameters, new BeanPropertyRowMapper<>(User.class));
+        return Optional.ofNullable(jdbcTemplate.queryForObject(sql, namedParameters, new BeanPropertyRowMapper<>(User.class)));
     }
 
     @Override
