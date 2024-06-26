@@ -1,4 +1,4 @@
-package com.hypad.Market.controller.auth;
+package com.hypad.Market.Service.auth;
 
 import com.hypad.Market.Service.JwtService;
 import com.hypad.Market.controller.AuthenticationRequest;
@@ -8,7 +8,6 @@ import com.hypad.Market.model.Role;
 import com.hypad.Market.model.User;
 import com.hypad.Market.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;

@@ -1,6 +1,7 @@
 package com.hypad.Market.controller;
 
-import com.hypad.Market.controller.auth.AuthenticationService;
+import com.hypad.Market.Service.auth.AuthenticationService;
+import com.hypad.Market.model.Role;
 import com.hypad.Market.model.User;
 import com.hypad.Market.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -28,6 +29,12 @@ public class AuthController {
     public ResponseEntity<AuthenticationResponse> register(
             @RequestBody RegisterRequest request
     ){
+        User user = User.builder()
+                .name(request.getName())
+                .password(request.getPassword())
+                .email(request.getEmail())
+                .role(Role.USER).build(); //fn
+        userRepository.saveUser(user);
         return ResponseEntity.ok(authenticationService.register(request));
     }
     @PostMapping("/authenticate")
