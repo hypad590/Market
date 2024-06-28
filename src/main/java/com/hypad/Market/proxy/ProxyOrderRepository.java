@@ -29,7 +29,7 @@ public class ProxyOrderRepository implements OrderRepository {
         if (orderRepositoryImpl == null) {
             orderRepositoryImpl = new OrderRepositoryImpl(namedParameterJdbcTemplate);
         }
-        System.out.println("Proxy: Fetching order with ID: soon ");//todo
+        System.out.println("Proxy: Fetching order with ID: soon " + orderId);
         return orderRepositoryImpl.getOrder(orderId);
     }
 

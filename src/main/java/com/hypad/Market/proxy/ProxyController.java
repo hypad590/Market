@@ -5,6 +5,7 @@ import com.hypad.Market.Service.ProductService;
 import com.hypad.Market.controller.ProductController;
 import com.hypad.Market.model.Product;
 import com.hypad.Market.repository.OrderControllerInt;
+import com.hypad.Market.repository.UserRepository;
 
 public class ProxyController implements OrderControllerInt {
 
@@ -14,18 +15,21 @@ public class ProxyController implements OrderControllerInt {
 
     private final OrderService orderService;
 
-    public ProxyController(ProductController productController, ProductService productService, OrderService orderService) {
+    private final UserRepository userRepository;
+
+    public ProxyController(ProductController productController, ProductService productService, OrderService orderService, UserRepository userRepository) {
         this.productController = productController;
         this.productService = productService;
         this.orderService = orderService;
+        this.userRepository = userRepository;
     }
 
     @Override
-    public void addProductToOrder(Product product) {
+    public void addProductToOrder(Product product, String name) {
         if(productController == null){
-            productController = new ProductController(productService,orderService);
+            productController = new ProductController(productService,orderService,userRepository);
         }
         System.out.println("Proxy: adding product to order");
-        productController.addProductToOrder(product);
+        productController.addProductToOrder(product, name);
     }
 }

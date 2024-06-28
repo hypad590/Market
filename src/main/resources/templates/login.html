@@ -1,27 +1,34 @@
+<!-- login.html -->
+
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
     <title>Login</title>
-    <link rel="stylesheet" type="text/css" href="/css/styles.css">
 </head>
 <body>
-<h1>Login</h1>
-<form th:action="@{/auth/v1/authProceed}" method="post">
+<h2>Login</h2>
+
+<!-- Form for login -->
+<form action="/auth/v1/authProceed" method="post">
     <div>
-        <label for="username">Username:</label>
-        <input type="text" id="username" name="username" required>
+        <label for="email">Email:</label>
+        <input type="text" id="email" name="email" required>
     </div>
     <div>
         <label for="password">Password:</label>
         <input type="password" id="password" name="password" required>
     </div>
     <div>
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email" required>
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
     </div>
     <div>
         <button type="submit">Login</button>
     </div>
 </form>
+
+<!-- Link to login form -->
+<p>Don't have an account? <a href="/register">Register here</a></p>
 </body>
 </html>

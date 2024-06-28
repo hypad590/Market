@@ -36,7 +36,7 @@ public class ProxyUserRepository implements UserRepository {
     }
 
     @Override
-    public User getUserById(int id) {
+    public User getUserById(Long id) {
         if(userRepositoryImpl == null){
             userRepositoryImpl = new UserRepositoryImpl(namedParameterJdbcTemplate);
         }
@@ -60,5 +60,23 @@ public class ProxyUserRepository implements UserRepository {
         }
         System.out.println("Proxy: saving user: " + user.toString());
         userRepositoryImpl.saveUser(user);
+    }
+
+    @Override
+    public String getUserNameByToken(String token) {
+        if(userRepositoryImpl == null){
+            userRepositoryImpl = new UserRepositoryImpl(namedParameterJdbcTemplate);
+        }
+        System.out.println("Proxy: getting username by token: " + token);
+        return userRepositoryImpl.getUserNameByToken(token);
+    }
+
+    @Override
+    public User getUserByToken(String token) {
+        if(userRepositoryImpl == null){
+            userRepositoryImpl = new UserRepositoryImpl(namedParameterJdbcTemplate);
+        }
+        System.out.println("Proxy: getting user by token: " + token);
+        return userRepositoryImpl.getUserByToken(token);
     }
 }
